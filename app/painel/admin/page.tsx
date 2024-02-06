@@ -17,8 +17,6 @@ import { MercadoPagoContext } from "@/context/MercadoPago";
 export default function Page() {
   const { payment } = useContext(MercadoPagoContext);
 
-  console.log(payment);
-
   return (
     <Main>
       <H1>Admin</H1>
@@ -48,7 +46,7 @@ export default function Page() {
       </div>
       <div className="mt-4 grid grid-cols-6 gap-4">
         <div className="col-span-4">
-          <ChartsColumn />
+          {/* <ChartsColumn /> */}
         </div>
 
         <div className="col-span-2 border rounded-lg p-4">
