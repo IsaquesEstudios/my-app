@@ -46,7 +46,7 @@ export default function Page() {
       </div>
       <div className="mt-4 grid grid-cols-6 gap-4">
         <div className="col-span-4">
-          {/* <ChartsColumn /> */}
+          <ChartsColumn />
         </div>
 
         <div className="col-span-2 border rounded-lg p-4">
