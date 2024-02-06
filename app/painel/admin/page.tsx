@@ -21,63 +21,58 @@ export default function Page() {
 
   return (
     <Main>
-      {payment && (
-        <>
-          <H1>Admin</H1>
+      <H1>Admin</H1>
+      <div className="mt-4 flex gap-x-4 w-full">
+        <Card
+          title="Mês atual"
+          value={`${payment?.totalValueMonth}`}
+          key={1}
+          icon={<LiaMoneyBillWaveAltSolid size={22} />}
+          compare="+180% comprado mês anterior"
+        />
+        <Card
+          title="Renda por assinatura"
+          value="R$324.00"
+          recurrency="Mês"
+          key={2}
+          icon={<IoCalendarOutline size={22} />}
+          compare="8 Assinaturas atuais"
+        />
+        <Card
+          title="Gasto com dispesas"
+          value="R$324.00"
+          key={3}
+          icon={<MdPerson size={22} />}
+          compare="3 Funcionários atuais"
+        />
+      </div>
+      <div className="mt-4 grid grid-cols-6 gap-4">
+        <div className="col-span-4">
+          <ChartsColumn />
+        </div>
 
-          <div className="mt-4 flex gap-x-4 w-full">
-            <Card
-              title="Mês atual"
-              value={`${payment?.totalValueMonth}`}
-              key={1}
-              icon={<LiaMoneyBillWaveAltSolid size={22} />}
-              compare="+180% comprado mês anterior"
-            />
-            <Card
-              title="Renda por assinatura"
-              value="R$324.00"
-              recurrency="Mês"
-              key={2}
-              icon={<IoCalendarOutline size={22} />}
-              compare="8 Assinaturas atuais"
-            />
-            <Card
-              title="Gasto com dispesas"
-              value="R$324.00"
-              key={3}
-              icon={<MdPerson size={22} />}
-              compare="3 Funcionários atuais"
-            />
+        <div className="col-span-2 border rounded-lg p-4">
+          <div className="flex gap-x-4">
+            <H2>Pagamentos recentes</H2>
+            <Badge variant="outline">5</Badge>
           </div>
-
-          <div className="mt-4 grid grid-cols-6 gap-4">
-            <div className="col-span-4">
-              <ChartsColumn />
-            </div>
-
-            <div className="col-span-2 border rounded-lg p-4">
-              <div className="flex gap-x-4">
-                <H2>Pagamentos recentes</H2>
-                <Badge variant="outline">5</Badge>
-              </div>
-              <Separator className="mt-4" />
-              <ScrollArea className="h-[425px]">
-                {payment?.allReceivedPayment.map((item: any, index: number) => {
-                  return (
-                    <PaymentComponents
-                      key={index}
-                      title={payment?.currentMonth.title}
-                      value={`${item?.transaction_amount}.00`}
-                      approved={item?.date_approved}
-                      method={item?.payment_method_id}
-                    />
-                  );
-                })}
-              </ScrollArea>
-            </div>
-          </div>
-        </>
-      )}
+          <Separator className="mt-4" />
+          <ScrollArea className="h-[425px]">
+            {payment?.allReceivedPayment.map((item: any, index: number) => {
+              return (
+                <PaymentComponents
+                  key={index}
+                  title={payment?.currentMonth.title}
+                  value={`${item?.transaction_amount}.00`}
+                  approved={item?.date_approved}
+                  method={item?.payment_method_id}
+                />
+              );
+            })}
+          </ScrollArea>
+        </div>
+      </div>
+      )
     </Main>
   );
 }
