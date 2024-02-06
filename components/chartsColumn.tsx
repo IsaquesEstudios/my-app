@@ -1,13 +1,12 @@
-// "use client";
+"use client";
 
 import ReactApexChart from "react-apexcharts";
 import { useEffect, useState } from "react";
+import dynamic from 'next/dynamic';
+const ApexCharts = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default function ChartsColumn() {
-  const [data, setData] = useState<any>();
-  const [height, setHeight] = useState<any>("500px");
-  useEffect(() => {
-    setData({
+    const [data, setData] = useState<any>({
       series: [
         {
           name: "Valores mensais",
@@ -19,7 +18,7 @@ export default function ChartsColumn() {
       ],
       options: {
         chart: {
-          height: height,
+          height: 500,
           type: "bar",
         },
         grid: {
@@ -154,15 +153,15 @@ export default function ChartsColumn() {
         },
       },
     });
-  }, []);
 
   return (
-    <div id="chart" className={`w-full border p-4 rounded-lg h-[525px] `}>
-      <ReactApexChart
+    <div id="chart" className="w-full border p-4 rounded-lg h-[525px]">
+      <ApexCharts
         options={data.options}
         series={data.series}
         type="bar"
-        height={height}
+        height="500px"
+        width="100%"
       />
     </div>
   );
