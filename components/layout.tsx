@@ -5,5 +5,5 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
-  return <div className="max-w-[90%]">{children}</div>;
+  return <div className="max-w-[94%] w-full m-auto">{children}</div>;
 }

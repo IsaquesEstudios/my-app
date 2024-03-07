@@ -1,7 +1,7 @@
 import { Large } from "./fonts/large";
 import { Muted } from "./fonts/muted";
-import { FormatDate } from "./formatDate";
-import { FormatHours } from "./formatHours";
+import { FormatDate } from "./formatting/formatDate";
+import { FormatHours } from "./formatting/formatHours";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
 

@@ -1,10 +1,18 @@
+import Layout from "@/components/layout";
+import Nav from "@/components/nav";
 import { MercadoPago } from "@/context/MercadoPago";
-import type { Metadata } from "next";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <MercadoPago>{children}</MercadoPago>;
+  return (
+    <MercadoPago>
+      <div className="flex">
+        <Nav />
+        <Layout>{children}</Layout>
+      </div>
+    </MercadoPago>
+  );
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { Tarefas } from "@/api/tarefas";
+import { Tarefas } from "@/api/Api";
 import { Main } from "@/components/main";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

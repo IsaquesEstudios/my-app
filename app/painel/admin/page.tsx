@@ -11,30 +11,36 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { PaymentComponents } from "@/components/PaymentComponent";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { useContext } from "react";
+import { Suspense, useContext } from "react";
 import { MercadoPagoContext } from "@/context/MercadoPago";
 
 export default function Page() {
-  const { payment } = useContext(MercadoPagoContext);
+  const { payment, plans } = useContext(MercadoPagoContext);
 
   return (
     <Main>
-      <H1>Admin</H1>
+      {/* <H1>Admin</H1> */}
       <div className="mt-4 flex gap-x-4 w-full">
-        <Card
-          title="Mês atual"
-          value={`${payment?.totalValueMonth}`}
-          key={1}
-          icon={<LiaMoneyBillWaveAltSolid size={22} />}
-          compare="+180% comprado mês anterior"
-        />
+        <Suspense fallback={<p>qwe</p>}>
+          <Card
+            title="Mês atual"
+            value={payment?.totalCurrentMonth.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })}
+            key={1}
+            icon={<LiaMoneyBillWaveAltSolid size={22} />}
+            compare="+180% comprado mês anterior"
+          />
+        </Suspense>
+
         <Card
           title="Renda por assinatura"
-          value="R$324.00"
+          value={`+${plans?.AllPlansValue}`}
           recurrency="Mês"
           key={2}
           icon={<IoCalendarOutline size={22} />}
-          compare="8 Assinaturas atuais"
+          compare={`${plans?.data.paging.total} Assinaturas atuais`}
         />
         <Card
           title="Gasto com dispesas"
@@ -56,7 +62,7 @@ export default function Page() {
           </div>
           <Separator className="mt-4" />
           <ScrollArea className="h-[425px]">
-            {payment?.allReceivedPayment.map((item: any, index: number) => {
+            {payment?.allReceivedPayment?.map((item: any, index: number) => {
               return (
                 <PaymentComponents
                   key={index}
@@ -70,7 +76,6 @@ export default function Page() {
           </ScrollArea>
         </div>
       </div>
-      )
     </Main>
   );
 }
