@@ -1,6 +1,5 @@
 "use client"
 
-import { Tarefas } from "@/api/Api";
 import { Main } from "@/components/main";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,7 +66,7 @@ export default function Page() {
             <TableHead>Criado:</TableHead>
           </TableHeader>
           <TableBody>
-            {Tarefas.map((item, index) => {
+            {/* {Tarefas.map((item, index) => {
               return (
                 <TableRow key={index}>
                   <TableCell >{item.titulo}</TableCell>
@@ -77,7 +76,7 @@ export default function Page() {
                   <TableCell>{item.created_at}</TableCell>
                 </TableRow>
               );
-            })}
+            })} */}
           </TableBody>
         </Table>
       </div>
