@@ -54,7 +54,7 @@ export default function Page() {
 
   return (
     <Main className="relative">
-      <div className="grid grid-cols-2 gap-10 mb-10">
+      {/* <div className="grid grid-cols-2 gap-10 mb-10">
         <Card
           title="Total do mês"
           value={paymentPerMonth?.AllValuePerMonth}
@@ -69,13 +69,13 @@ export default function Page() {
           compare={`Pagamentos ativos por email: ${plans?.PlansValue?.length}`}
           icon={<FaRegCreditCard />}
         />
-      </div>
+      </div> */}
 
-      <div className="flex justify-between mb-4">
+      {/* <div className="flex justify-between mb-4">
         <form className="w-full flex mr-4 gap-4">
           <Input placeholder="Filtro" /> <Button>Filtrar</Button>
         </form>
-        {/* <Button onClick={HandleNewPayment}>Novo pagamento</Button> */}
+        <Button onClick={HandleNewPayment}>Novo pagamento</Button>
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant="outline">Criar assinatura</Button>
@@ -134,7 +134,7 @@ export default function Page() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-      </div>
+      </div> */}
 
       <Table className="border-[1px] rounded-sm">
         <TableHeader>
@@ -146,7 +146,7 @@ export default function Page() {
             <TableHead className="w-[200px]">ID</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        {/* <TableBody>
           {paymentPerMonth?.payment?.map(
             (item: PaymentPerMonthType, index: number) => {
               return (
@@ -164,7 +164,7 @@ export default function Page() {
               );
             }
           )}
-        </TableBody>
+        </TableBody> */}
       </Table>
     </Main>
   );
