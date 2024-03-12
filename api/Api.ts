@@ -1,7 +1,10 @@
 import axios from "axios";
 
+const development = "http://localhost:3333";
+const production = "https://main-form.herokuapp.com";
+
 const Api = axios.create({
-  baseURL: "http://localhost:3333",
+  baseURL: development,
 });
 
 export { Api };

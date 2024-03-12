@@ -1,6 +1,6 @@
 "use client";
 
-import { Api } from "@/api/MercadoPago";
+import { Api } from "./../api/Api";
 import { ReactNode, createContext, useEffect, useState } from "react";
 
 type PaymentType = {
@@ -21,13 +21,8 @@ type MercadoPagoType = {
 const MercadoPagoContext = createContext({} as MercadoPagoProps);
 
 export function MercadoPago({ children }: MercadoPagoType) {
-  const a = {
-    totalCurrentMonth: 0,
-    ShowAllSaveTotalForMonth: [],
-  };
   const [payment, setPayment] = useState<PaymentType>();
   const [plans, setPlans] = useState();
-  console.log(payment);
   useEffect(() => {
     async function ShowPayments() {
       const payment = await Api.get("/payment/show/all", {

@@ -1,24 +1,36 @@
 "use client";
 
-import ReactApexChart from "react-apexcharts";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
-import { MercadoPagoContext } from "@/context/MercadoPago";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: true });
 
 type ChartsColumn = {
   month: string;
 };
 
-export default function ChartsColumn() {
-  const { payment, plans } = useContext(MercadoPagoContext);
-  const [data, setData] = useState<any>({
+type ItensShowAllSaveTotalForMonth = {
+  identifier: string;
+  month: string;
+  total_month: string;
+  year: number;
+};
+
+type ItensCharts = {
+  ShowAllSaveTotalForMonth: ItensShowAllSaveTotalForMonth[];
+};
+
+export default function ChartsColumn({
+  ShowAllSaveTotalForMonth,
+}: ItensCharts) {
+  const [DataCharts, setDataCharts] = useState<any>({
     series: [
       {
         name: "Valores mensais",
-        data: payment?.ShowAllSaveTotalForMonth.map((item: any) => {
-          return item.total_month;
-        }),
+        data: ShowAllSaveTotalForMonth.map(
+          (item: ItensShowAllSaveTotalForMonth) => {
+            return item.total_month;
+          }
+        ),
       },
     ],
     options: {
@@ -65,12 +77,11 @@ export default function ChartsColumn() {
         },
       },
       xaxis: {
-        categories: payment?.ShowAllSaveTotalForMonth.map(
-          (item: ChartsColumn) => {
+        categories: ShowAllSaveTotalForMonth.map(
+          (item: ItensShowAllSaveTotalForMonth) => {
             return item.month;
           }
         ),
-
         tickAmount: undefined,
         tickPlacement: "between",
         min: undefined,
@@ -89,13 +100,13 @@ export default function ChartsColumn() {
           maxHeight: 120,
           style: {
             colors: [],
-            fontSize: "12px",
+            fontSize: "10px",
             fontFamily: "Montserrat, Arial, sans-serif",
             fontWeight: 600,
             cssClass: "apexcharts-xaxis-label",
           },
           offsetX: 0,
-          offsetY: 0,
+          offsetY: -2,
         },
         axisBorder: {
           show: true,
@@ -123,7 +134,7 @@ export default function ChartsColumn() {
           maxWidth: 160,
           style: {
             colors: [],
-            fontSize: "10px",
+            fontSize: "14px",
             fontFamily: "montserrat, Arial, sans-serif",
             fontWeight: 600,
             cssClass: "apexcharts-yaxis-label",
@@ -153,17 +164,13 @@ export default function ChartsColumn() {
 
   return (
     <div id="chart" className="w-full border p-4 rounded-lg h-[525px]">
-      {/* {payment?.ShowAllSaveTotalForMonth?.length > 0 ? ( // Use optional chaining
-        <ApexCharts
-          options={data.options}
-          series={data.series}
-          type="bar"
-          height="500px"
-          width="100%"
-        />
-      ) : (
-        <p>Loading chart data...</p>
-      )} */}
+      <ApexCharts
+        options={DataCharts.options}
+        series={DataCharts.series}
+        type="bar"
+        height="500px"
+        width="100%"
+      />
     </div>
   );
 }

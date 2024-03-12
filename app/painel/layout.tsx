@@ -1,9 +1,15 @@
-import type { Metadata } from "next";
+import Layout from "@/components/layout";
+import Nav from "@/components/menu/nav";
+import { MercadoPago } from "@/context/MercadoPago";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <MercadoPago>
+      <Layout>{children}</Layout>
+    </MercadoPago>
+  );
 }

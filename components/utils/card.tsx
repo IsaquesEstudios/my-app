@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Large } from "./fonts/large";
-import { Muted } from "./fonts/muted";
-import { FormatMoney } from "./formatting/money";
+import { Large } from "../fonts/large";
+import { Muted } from "../fonts/muted";
+import { FormatMoney } from "../formatting/money";
 import { Suspense } from "react";
 
 type CardProps = {

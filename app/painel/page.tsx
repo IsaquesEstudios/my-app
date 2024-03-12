@@ -1,12 +1,97 @@
+// "use client";
 import { Main } from "@/components/main";
+import ChartsColumn from "@/components/chartsColumn";
+import { H2 } from "@/components/fonts/h2";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Api } from "@/api/Api";
+import Card from "@/components/utils/card";
+import { LiaMoneyBillWaveAltSolid } from "react-icons/lia";
+import { IoCalendarOutline } from "react-icons/io5";
 
+type PlansMercadoPago = {
+  data: {
+    data: {
+      paging: {
+        offset: number;
+        limit: number;
+        total: number;
+      };
+      results: [];
+    };
+    PlansValue: number[];
+    AllPlansValue: string;
+  };
+};
 
+type paymentType = {
+  data: {
+    totalCurrentMonth: number;
+    showAllSaveTotalForMonth: ItensShowAllSaveTotalForMonth[];
+  };
+};
 
-export default function Page(){
+type ItensShowAllSaveTotalForMonth = {
+  identifier: string;
+  month: string;
+  total_month: string;
+  year: number;
+};
 
-  return(
+export default async function Page() {
+  const payment: paymentType = await Api.get("/payment/show/all", {
+    params: {
+      sort: "date_approved",
+      criteria: "desc",
+      // status: "active",
+      limit: "100",
+    },
+  });
+
+  const MercadoPagoPlans: PlansMercadoPago = await Api.get(
+    "/payment/plan/all",
+    {
+      params: {
+        status: "active",
+      },
+    }
+  );
+
+  return (
     <Main>
-      <h1>d</h1>
+      <div className="mt-4 flex gap-x-4 w-full">
+        <Card
+          title="Mês atual"
+          value={payment?.data.totalCurrentMonth.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+          key={1}
+          icon={<LiaMoneyBillWaveAltSolid size={22} />}
+          compare="+180% comprado mês anterior"
+        />
+
+        <Card
+          title="Renda por assinatura"
+          value={`+${MercadoPagoPlans?.data.AllPlansValue}`}
+          recurrency="Mês"
+          key={2}
+          icon={<IoCalendarOutline size={22} />}
+          compare={`${MercadoPagoPlans.data.data.paging.total} Assinaturas atuais`}
+        />
+      </div>
+
+      
+      <div className="mt-4 grid grid-cols-6 gap-4">
+        <div className="col-span-4">
+          <ChartsColumn
+            ShowAllSaveTotalForMonth={payment.data.showAllSaveTotalForMonth}
+          />
+        </div>
+
+        <div className="col-span-2 border rounded-lg p-4"></div>
+      </div>
     </Main>
-  )
+  );
 }

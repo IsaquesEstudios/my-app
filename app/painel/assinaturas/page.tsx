@@ -1,6 +1,5 @@
 "use client";
-import { Api } from "@/api/Api";
-import Card from "@/components/card";
+import Card from "@/components/utils/card";
 import InputForm from "@/components/form/input-form";
 import InputTextArea from "@/components/form/textarea";
 import { Main } from "@/components/main";
@@ -22,9 +21,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { MercadoPagoContext } from "@/context/MercadoPago";
-import { Separator } from "@radix-ui/react-separator";
-import { useContext, useEffect, useState } from "react";
 import { FaMoneyBillTrendUp, FaRegCreditCard } from "react-icons/fa6";
 
 type PlansTypes = {
@@ -54,21 +50,7 @@ type PaymentPerMonthState = {
 };
 
 export default function Page() {
-  const [paymentPerMonth, setPaymentPerMonth] =
-    useState<PaymentPerMonthState>();
-  const { plans } = useContext(MercadoPagoContext);
-
-  useEffect(() => {
-    async function GetAllUsers() {
-      const { data } = await Api.get("/payment-per-month/show/all");
-
-      setPaymentPerMonth(data);
-    }
-
-    GetAllUsers();
-  }, []);
-
-  function HandleNewPayment() {}
+  
 
   return (
     <Main className="relative">

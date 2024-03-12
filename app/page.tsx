@@ -41,9 +41,9 @@ export default function Page() {
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
       if (userCredential) {
         if (userCredential?.user.email === "matteus@isaquesestudios.com") {
-          window.location.href = "/painel/admin";
+          window.location.href = "/painel";
         }
-        window.location.href = "/painel";
+        window.location.href = "/";
       }
     });
   }
