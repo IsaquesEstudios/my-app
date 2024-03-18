@@ -77,11 +77,10 @@ export default async function Page() {
         /> */}
       </div>
 
-      {/* <div className="flex justify-between mb-4">
+      <div className="flex justify-between mb-4">
         <form className="w-full flex mr-4 gap-4">
           <Input placeholder="Filtro" /> <Button>Filtrar</Button>
         </form>
-        <Button onClick={HandleNewPayment}>Novo pagamento</Button>
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant="outline">Criar assinatura</Button>
@@ -140,7 +139,7 @@ export default async function Page() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-      </div> */}
+      </div>
 
       <Table className="border-[1px] rounded-sm">
         <TableHeader>

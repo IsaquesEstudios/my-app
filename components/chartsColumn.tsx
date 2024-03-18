@@ -168,13 +168,15 @@ export default function ChartsColumn({
 
   return (
     <div id="chart" className="w-full border p-4 rounded-lg h-[525px]">
-      <ApexCharts
-        options={DataCharts?.options}
-        series={DataCharts?.series}
-        type="bar"
-        height="500px"
-        width="100%"
-      />
+      {DataCharts && (
+        <ApexCharts
+          options={DataCharts?.options}
+          series={DataCharts?.series}
+          type="bar"
+          height="500px"
+          width="100%"
+        />
+      )}
     </div>
   );
 }
