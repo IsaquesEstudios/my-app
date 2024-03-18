@@ -38,14 +38,14 @@ export default function Page() {
     const email = e.target[0].value;
     const password = e.target[1].value;
 
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      if (userCredential) {
-        if (userCredential?.user.email === "matteus@isaquesestudios.com") {
-          window.location.href = "/painel";
-        }
-        window.location.href = "/";
-      }
-    });
+    // signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    //   if (userCredential) {
+    //     if (userCredential?.user.email === "matteus@isaquesestudios.com") {
+    //       window.location.href = "/painel";
+    //     }
+    //     window.location.href = "/";
+    //   }
+    // });
   }
 
   return (
