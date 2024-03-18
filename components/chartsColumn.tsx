@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: true });
+const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 type ChartsColumn = {
   month: string;
