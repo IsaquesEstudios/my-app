@@ -9,7 +9,10 @@ export default function RootLayout({
 }>) {
   return (
     <MercadoPago>
-      <Layout>{children}</Layout>
+      <body className="flex">
+        <Nav />
+        <Layout>{children}</Layout>
+      </body>
     </MercadoPago>
   );
 }

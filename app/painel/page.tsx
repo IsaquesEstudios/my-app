@@ -71,6 +71,16 @@ export default async function Page() {
           icon={<LiaMoneyBillWaveAltSolid size={22} />}
           compare="+180% comprado mês anterior"
         />
+        <Card
+          title="Funcionários"
+          value={payment?.data.totalCurrentMonth.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+          key={1}
+          icon={<LiaMoneyBillWaveAltSolid size={22} />}
+          compare="+180% comprado mês anterior"
+        />
 
         <Card
           title="Renda por assinatura"
@@ -82,7 +92,6 @@ export default async function Page() {
         />
       </div>
 
-      
       <div className="mt-4 grid grid-cols-6 gap-4">
         <div className="col-span-4">
           <ChartsColumn

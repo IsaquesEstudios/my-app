@@ -1,4 +1,3 @@
-"use client";
 import Card from "@/components/utils/card";
 import InputForm from "@/components/form/input-form";
 import InputTextArea from "@/components/form/textarea";
@@ -22,6 +21,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { FaMoneyBillTrendUp, FaRegCreditCard } from "react-icons/fa6";
+import { Api } from "@/api/Api";
 
 type PlansTypes = {
   reason: string;
@@ -49,27 +49,33 @@ type PaymentPerMonthState = {
   AllValuePerMonth: string;
 };
 
-export default function Page() {
-  
+export default async function Page() {
+  const plans = await Api.get("/payment/plan/all", {
+    params: {
+      status: "active",
+    },
+  });
+
+  const debitByEmail = await Api.get("/payment-per-month/show/all");
 
   return (
     <Main className="relative">
-      {/* <div className="grid grid-cols-2 gap-10 mb-10">
+      <div className="grid grid-cols-2 gap-10 mb-10">
         <Card
-          title="Total do mês"
-          value={paymentPerMonth?.AllValuePerMonth}
+          title="Débito automático"
+          value={plans?.data.AllPlansValue}
           key={1}
-          compare={`Pagamentos ativos por email: ${paymentPerMonth?.payment?.length}`}
+          compare={`Pagamentos ativos por email: ${plans?.data.data.paging.total}`}
           icon={<FaMoneyBillTrendUp />}
         />
-        <Card
+        {/* <Card
           title="Débito Automático Mercado Pago"
           value={plans?.AllPlansValue}
           key={2}
           compare={`Pagamentos ativos por email: ${plans?.PlansValue?.length}`}
           icon={<FaRegCreditCard />}
-        />
-      </div> */}
+        /> */}
+      </div>
 
       {/* <div className="flex justify-between mb-4">
         <form className="w-full flex mr-4 gap-4">
