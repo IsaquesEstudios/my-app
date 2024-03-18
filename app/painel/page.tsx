@@ -1,10 +1,6 @@
 // "use client";
 import { Main } from "@/components/main";
 import ChartsColumn from "@/components/chartsColumn";
-import { H2 } from "@/components/fonts/h2";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { Api } from "@/api/Api";
 import Card from "@/components/utils/card";
 import { LiaMoneyBillWaveAltSolid } from "react-icons/lia";
