@@ -89,11 +89,11 @@ export default async function Page() {
       </div>
 
       <div className="mt-4 grid grid-cols-6 gap-4">
-        <div className="col-span-4">
+        {/* <div className="col-span-4">
           <ChartsColumn
-            ShowAllSaveTotalForMonth={payment.data.showAllSaveTotalForMonth}
+            ShowAllSaveTotalForMonth={payment?.data.showAllSaveTotalForMonth}
           />
-        </div>
+        </div> */}
 
         <div className="col-span-2 border rounded-lg p-4"></div>
       </div>
