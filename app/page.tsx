@@ -22,16 +22,16 @@ type PropsStateChanged = {
 
 export default function Page() {
   const [isAuthenticated, setAuth] = useState();
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        if (user?.email === "matteus@isaquesestudios.com") {
-          window.location.href = "/painel/admin";
-        }
-        window.location.href = "/painel";
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       if (user?.email === "matteus@isaquesestudios.com") {
+  //         window.location.href = "/painel/admin";
+  //       }
+  //       window.location.href = "/painel";
+  //     }
+  //   });
+  // }, []);
 
   function HandleLogin(e: any) {
     e.preventDefault();
